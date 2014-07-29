@@ -1289,3 +1289,11 @@ fieldset {
     background-color: white;
 }
 /* END - RIPPLE-71 Barcode Scanner styles */
+
+/*********** CORDOVASIM  START ************/
+
+#upload-file-button {
+    display:none;
+}
+
+/*********** CORDOVASIM  END ************/
