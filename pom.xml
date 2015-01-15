@@ -30,7 +30,7 @@
 							<target>
 								<exec executable="cmd"
 									dir="${basedir}"
-									spawn="true">
+									spawn="false">
 									<arg value="/c"/>
 									<arg value="configure"/>
 								</exec>
@@ -54,7 +54,7 @@
 							<target>
 								<exec executable="./configure"
 									dir="."
-									spawn="true"/>
+									spawn="false"/>
 							</target>
 						</configuration>
 					</plugin>
@@ -83,16 +83,6 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>1.3.2</version>
 				<executions>
-					<execution>
-						<id>build-ripple-configure</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>exec</goal>
-						</goals>
-						<configuration>
-							<executable>${basedir}/configure</executable>
-						</configuration>
-					</execution>
 					<execution>
 						<id>build-ripple-jake</id>
 						<phase>compile</phase>
