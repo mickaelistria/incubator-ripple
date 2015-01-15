@@ -15,8 +15,69 @@
 		<tycho.scmUrl>scm:git:https://github.com/jbosstools/jbosstools-incubator-ripple.git</tycho.scmUrl>
 	</properties>
 
+	<profiles>
+		<profile>
+			<id>windows</id>
+			<activation>
+				<os><family>Windows</family></os>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.6</version>
+						<configuration>
+							<target>
+								<exec executable="cmd"
+									dir="${basedir}"
+									spawn="true">
+									<arg value="/c"/>
+									<arg value="configure"/>
+								</exec>
+							</target>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>others</id>
+			<activation>
+				<os><family>!Windows</family></os>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.6</version>
+						<configuration>
+							<target>
+								<exec executable="./configure"
+									dir="."
+									spawn="true"/>
+							</target>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	
 	<build>
 		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>build-ripple</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -65,6 +126,4 @@
 			</plugin>
 		</plugins>
 	</build>
-				
-				
 </project>
